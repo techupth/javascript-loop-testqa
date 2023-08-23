@@ -83,9 +83,53 @@ let orders = [
   },
 ];
 
+// Start coding here
 
+// 1) หา Order ที่มีมูลค่ามากที่สุด เมื่อหาได้แล้วให้ Log ผลลัพธ์ออกมาทางหน้าจอ
 let currentPurchasedAmount;
 let maxPurchasedAmount;
 let maxPurchasedId;
 
-// Start coding here
+for (let i = 0; i < orders.length; i++) {
+  currentPurchasedAmount = orders[i].productPrice * orders[i].productQuantity;
+  if (i === 0) {
+    maxPurchasedAmount = currentPurchasedAmount;
+    maxPurchasedId = orders[i].id;
+  } else if (maxPurchasedAmount < currentPurchasedAmount) {
+    maxPurchasedAmount = currentPurchasedAmount;
+    maxPurchasedId = orders[i].id;
+  }
+}
+
+console.log(`Order id: ${maxPurchasedId}, Total price: ${maxPurchasedAmount}`);
+
+// 2) ให้ใช้ Loop ในการหาว่า "Birdie Shepland" จ่ายเงินซื้อสินค้าไปทั้งหมดเท่าไหร่ เมื่อหาได้แล้วให้ Log ผลลัพธ์ออกมาทางหน้าจอ
+let birdiePurchasedAmount;
+
+for (let i = 0; i < orders.length; i++) {
+  if (orders[i].customerName === "Birdie Shepland") {
+    birdiePurchasedAmount = currentPurchasedAmount;
+  }
+}
+
+console.log(`Total price is ${birdiePurchasedAmount}`);
+
+// 3) ให้ใช้ Loop ในการหา Order ที่จ่ายเงินด้วยเครดิตการ์ดของ "jcb" เมื่อเจอแล้วให้นำ Object ของ Order นั้นไปบรรจุลงใน Array ที่มีชื่อว่า jcbOrders
+const jcbOrders = [];
+
+for (let i = 0; i < orders.length; i++) {
+  if (orders[i].creditCardType === "jcb") {
+    jcbOrders.push(orders[i]);
+  }
+}
+
+console.log(jcbOrders);
+
+// 4) ให้ใช้ Loop ในการหายอดรวมของการซื้อสินค้าในทุกๆ Order ว่าทั้งหมดเป็นเท่าไหร่
+let sumPurchasedAmount = 0;
+
+for (let i = 0; i < orders.length; i++) {
+  sumPurchasedAmount += currentPurchasedAmount;
+}
+
+console.log(`Total: ${sumPurchasedAmount}`);
